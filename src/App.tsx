@@ -60,8 +60,8 @@ const projects = [
 
 function Home({ isLoaded, setIsHovering, setHoveredId, hoveredId }: any) {
   return (
-    <main className="pt-32 pb-24 px-4 md:px-8 max-w-[1800px] mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-16 md:gap-y-24">
+    <main className="pt-32 pb-24 px-4 md:px-12 max-w-[1600px] mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16 md:gap-y-32">
         {projects.map((project, index) => (
           <motion.div
             key={project.id}
@@ -72,7 +72,7 @@ function Home({ isLoaded, setIsHovering, setHoveredId, hoveredId }: any) {
               delay: index * 0.1, 
               ease: [0.16, 1, 0.3, 1] 
             }}
-            className="group cursor-none"
+            className={`group cursor-none ${index % 2 !== 0 ? 'md:mt-24' : ''}`}
             onMouseEnter={() => {
               setIsHovering(true);
               setHoveredId(project.id);
@@ -82,7 +82,7 @@ function Home({ isLoaded, setIsHovering, setHoveredId, hoveredId }: any) {
               setHoveredId(null);
             }}
           >
-            <div className="relative aspect-[3/4] overflow-hidden bg-gray-200">
+            <div className="relative aspect-[4/5] overflow-hidden bg-gray-200">
               <motion.img
                 src={project.image}
                 alt={project.title}
@@ -92,16 +92,16 @@ function Home({ isLoaded, setIsHovering, setHoveredId, hoveredId }: any) {
               <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
             
-            <div className="mt-6 flex flex-col gap-1">
+            <div className="mt-8 flex flex-col gap-1">
               <div className="flex justify-between items-baseline">
-                <h2 className="text-lg md:text-xl font-medium tracking-tight uppercase">
+                <h2 className="text-xl md:text-2xl font-medium tracking-tight uppercase">
                   {project.title}
                 </h2>
-                <span className="text-[10px] md:text-xs opacity-40 font-mono">
+                <span className="text-xs opacity-40 font-mono">
                   0{index + 1}
                 </span>
               </div>
-              <p className="text-xs md:text-sm italic opacity-60 font-serif">
+              <p className="text-sm md:text-base italic opacity-60 font-serif">
                 {project.subtitle}
               </p>
             </div>
