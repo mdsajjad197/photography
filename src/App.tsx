@@ -81,6 +81,8 @@ function Home({ isLoaded, setIsHovering, setHoveredId, hoveredId }: any) {
               setIsHovering(false);
               setHoveredId(null);
             }}
+            onTouchStart={() => setHoveredId(project.id)}
+            onTouchEnd={() => setHoveredId(null)}
           >
             <div className="relative aspect-[4/5] overflow-hidden bg-gray-200">
               <motion.img
@@ -89,6 +91,19 @@ function Home({ isLoaded, setIsHovering, setHoveredId, hoveredId }: any) {
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
               />
+              {/* Mobile Hover Image Reveal */}
+              <AnimatePresence>
+                {hoveredId === project.id && (
+                  <motion.img
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    src={project.hoverImage}
+                    className="absolute inset-0 w-full h-full object-cover md:hidden pointer-events-none"
+                    referrerPolicy="no-referrer"
+                  />
+                )}
+              </AnimatePresence>
               <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
             
